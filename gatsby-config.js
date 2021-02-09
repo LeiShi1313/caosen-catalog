@@ -1,6 +1,7 @@
 module.exports = {
   siteMetadata: {
     title: "caosen-flip-gatsby",
+    siteUrl: "http://192.168.1.13:8001",
   },
   plugins: [
     "gatsby-plugin-sharp",
@@ -15,5 +16,7 @@ module.exports = {
       },
       __key: "images",
     },
+    `gatsby-plugin-sharp`,
+    `gatsby-transformer-sharp`,
   ],
 };
