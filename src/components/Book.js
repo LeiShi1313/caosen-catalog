@@ -9,7 +9,6 @@ const Book = ({ data }) => {
     const [page, setPage] = useState(0)
     const [totalPage, setTotalPage] = useState(0)
     const [flipBook, setFlipBook] = useState(null)
-    console.log(data)
 
     const onChangeOrientation = (e) => {
         console.log(e)
@@ -22,10 +21,10 @@ const Book = ({ data }) => {
 
 
     return (
-        <div>
+        <div className="book-container">
             <HTMLFlipBook
-                width={550}
-                height={733}
+                width={685}
+                height={960}
                 size="stretch"
                 minWidth={315}
                 maxWidth={1000}
@@ -37,33 +36,23 @@ const Book = ({ data }) => {
                 onFlip={(e) => setPage(e.data)}
                 onChangeOrientation={onChangeOrientation}
                 // onChangeState={this.onChangeState}
-                className="demo-book"
+                className="caosen-catalog"
                 ref={(el) => setFlipBook(el)}
             >
-
+                {/* <Page>
+                    <div style={{display: 'block', height: '98vh', background: '#fff'}} />
+                </Page> */}
                 {data.pages.edges.map((node, idx) =>
                     <Page>
-                        <Img alt={`page${1 + idx}`} fluid={node.node.childImageSharp.fluid} />
+                        <Img 
+                            alt={`page${1 + idx}`} 
+                            style={{ height: "100%", width: "100%" }}
+                            imgStyle={{ objectFit: "contain" }}
+                            fluid={node.node.childImageSharp.fluid} />
                     </Page>)}
 
             </HTMLFlipBook>
 
-            {/* <div className="container">
-                <div>
-
-                    <button type="button" onClick={prevButtonClick}>
-                        Previous page
-              </button>
-
-              [<span>{page}</span> of
-               <span>{totalPage}</span>]
-
-              <button type="button" onClick={nextButtonClick}>
-                        Next page
-              </button>
-
-                </div>
-            </div> */}
         </div>
     );
 }
